@@ -39,6 +39,21 @@ app.get('/blog', (req, res) => {
     res.send('Post completed')
 })
 
+app.get('/comment', (req, res) => {
+    const post2 = new BlogPost({
+        title: 'Cool Post',
+        body: 'Let us make a cool post',
+    })
+    // create comment
+    const myComment = {
+        header: 'Cool',
+        content: 'This is awesome man'
+    }
+    post2.comments.push(myComment)
+    //Save post to db
+    post2.save();
+})
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server listening on PORT: ${PORT}`);
